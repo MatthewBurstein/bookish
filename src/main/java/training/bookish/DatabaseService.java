@@ -12,18 +12,18 @@ public class DatabaseService {
     private final String username;
     private final String password;
 
-    public DatabaseService() {
-        this.url = "jdbc:postgresql://localhost:5432/bookish";
-        this.username = System.getenv("POSTGRES_USERNAME");
-        this.password = System.getenv("POSTGRES_PASSWORD");
+    public DatabaseService(String url, String username, String password) {
+        this.url = url;
+        this.username = username;
+        this.password = password;
     }
 
     public List<Book> getBooks() {
         List<Book> books = new ArrayList<>();
+        Book book;
         try (Connection con = DriverManager.getConnection(url, username, password);
              Statement st = con.createStatement();
              ResultSet rs = st.executeQuery("SELECT * FROM book")) {
-            Book book = null;
             while (rs.next()) {
                 book = new Book(
                         rs.getInt(1),
