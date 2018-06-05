@@ -1,6 +1,10 @@
 package training.bookish;
 
+import models.Book;
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseService {
 
@@ -14,24 +18,25 @@ public class DatabaseService {
         this.password = System.getenv("POSTGRES_PASSWORD");
     }
 
-    public void testConnection() {
+    public List<Book> getBooks() {
+        List<Book> books = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(url, username, password);
              Statement st = con.createStatement();
              ResultSet rs = st.executeQuery("SELECT * FROM book")) {
-
-            if (rs.next()) {
-                System.out.println(rs.getString(1));
-                System.out.println(rs.getString(2));
-                System.out.println(rs.getString(3));
-                System.out.println(rs.getString(4));
-                System.out.println(rs.getString(5));
-
+            Book book = null;
+            while (rs.next()) {
+                book = new Book(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getInt(5)
+                );
+                books.add(book);
             }
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
+        return books;
     }
-
 }

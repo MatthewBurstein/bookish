@@ -1,12 +1,15 @@
 package training.bookish;
 
-import java.sql.*;
-import java.util.logging.Logger;
+import models.Book;
+
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
         DatabaseService db = new DatabaseService();
-        db.testConnection();
+        Printer printer = new Printer();
+        List<Book> books = db.getBooks();
+        printer.printBookList(books);
     }
 }
