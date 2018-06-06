@@ -25,7 +25,7 @@ public class LoanService {
         Root<Loan> loan = query.from(Loan.class);
         query.select(loan)
                 .where(criteria.equal(
-                        loan.get("userAccount").get("id"),
+                        loan.get("user").get("id"),
                         userId));
         return entityManager.createQuery(query).getResultList();
     }

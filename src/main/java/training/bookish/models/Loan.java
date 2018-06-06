@@ -5,7 +5,7 @@ import java.sql.Date;
 
 @Entity
     @AttributeOverrides({
-            @AttributeOverride(name = "userAccount", column = @Column(name = "user_account")),
+            @AttributeOverride(name = "user", column = @Column(name = "user_account")),
             @AttributeOverride(name = "startDate", column = @Column(name = "startDate")),
             @AttributeOverride(name = "endDate", column = @Column(name = "end_date"))
     })
@@ -14,7 +14,7 @@ public class Loan {
     private int id;
     private Date startDate;
     private Date endDate;
-    private User userAccount;
+    private User user;
     private Book book;
 
     @Id
@@ -46,12 +46,12 @@ public class Loan {
 
     @ManyToOne
     @JoinColumn(name = "user_account")
-    public User getUserAccount() {
-        return userAccount;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserAccount(User userAccount) {
-        this.userAccount= userAccount;
+    public void setUser(User user) {
+        this.user= user;
     }
 
     @ManyToOne
