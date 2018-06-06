@@ -1,6 +1,6 @@
 package training.bookish;
 
-import models.Book;
+import training.bookish.models.Book;
 
 import java.sql.*;
 import java.util.ArrayList;
