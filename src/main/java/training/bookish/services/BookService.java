@@ -23,7 +23,8 @@ public class BookService {
         CriteriaBuilder criteria = entityManager.getCriteriaBuilder();
         CriteriaQuery<Book> query = criteria.createQuery(Book.class);
         Root<Book> book = query.from(Book.class);
-        query.select(book);
+        query.select(book)
+            .orderBy(criteria.asc(book.get("title")));
         return entityManager.createQuery(query).getResultList();
     }
 }
