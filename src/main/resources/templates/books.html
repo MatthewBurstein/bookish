@@ -20,9 +20,9 @@
                 <th>quantity</th>
             </tr>
             <tr th:each="book: ${books}">
-                <td th:text="${book.getTitle()}"></td>
-                <td th:text="${book.getAuthor()}"></td>
-                <td>some quantity</td>
+                <td><a th:href="@{'/books/'+${book.getId()}}"><span th:text="${book.getTitle()}"></span></a></td>
+                <td><span th:text="${book.getAuthor()}"></span></td>
+                <td><span>XXXX ADD QUANTITY CALCULATION XXXX</span></td>
             </tr>
         </table>
     </div>
