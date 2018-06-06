@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Bookish - Catalogue</title>
+</head>
+<body>
+<div layout:fragment="content" class="container body-content">
+    <div class="jumbotron">
+        <h1>Bookish</h1>
+        <p class="lead">Welcome to the Bookish Catalogue</p>
+    </div>
+    <div>
+        <p th:text="${book.getTitle()}"</p>
+    </div>
+</div>
+</body>
+</html>

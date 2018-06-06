@@ -27,4 +27,8 @@ public class BookService {
             .orderBy(criteria.asc(book.get("title")));
         return entityManager.createQuery(query).getResultList();
     }
+
+    public Book find(int bookId) {
+        return entityManager.find(Book.class, bookId);
+    }
 }
