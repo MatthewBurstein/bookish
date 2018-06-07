@@ -12,17 +12,17 @@
         <p class="lead">Welcome to the Bookish application</p>
     </div>
     <div>
-        <p>You are logged in as <span th:text="${userLoans.user.username}"></span></p>
+        <p>You are logged in as <span th:text="${user.username}"></span></p>
         <table>
             <tr>
                 <th>Title</th>
                 <th>Author</th>
                 <th>Return Date</th>
             </tr>
-            <tr th:each="loan: ${userLoans.loans}">
-                <td th:text="${loan.getBook().getTitle()}"></td>
-                <td th:text="${loan.getBook().getAuthor()}"></td>
-                <td th:text="${loan.getEndDate()}"></td>
+            <tr th:each="loan: ${user.loans}">
+                <td><span th:text="${loan.getBook().getTitle()}"></span></td>
+                <td><span th:text="${loan.getBook().getAuthor()}"></span></td>
+                <td><span th:text="${loan.getEndDate()}"></span></td>
             </tr>
         </table>
     </div>

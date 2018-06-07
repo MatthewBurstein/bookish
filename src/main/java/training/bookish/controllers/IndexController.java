@@ -1,7 +1,5 @@
 package training.bookish.controllers;
 
-import training.bookish.compositemodels.UserLoans;
-import training.bookish.models.Loan;
 import training.bookish.services.LoanService;
 import training.bookish.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import training.bookish.models.User;
 
 import java.security.Principal;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,9 +27,7 @@ public class IndexController {
     @RequestMapping("/")
     ModelAndView home(Principal principal) {
         User user = userService.getUser(principal.getName());
-        List<Loan> loans = loanService.getUserLoans(user.getId());
-        UserLoans userLoans = new UserLoans(user, loans);
-        return new ModelAndView("index", "userLoans", userLoans);
+        return new ModelAndView("index", "user", user);
     }
 
     @RequestMapping("/login")
