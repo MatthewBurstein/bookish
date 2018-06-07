@@ -2,6 +2,8 @@ package training.bookish.models;
 
 import javax.annotation.Generated;
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "books")
@@ -12,6 +14,7 @@ public class Book {
     private String title;
     private Integer numberOfCopies;
     private String author;
+    private Set<Loan> loans;
 
     public Book() {}
 
@@ -67,5 +70,16 @@ public class Book {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL,
+               fetch = FetchType.LAZY)
+    @JoinColumn(name = "book")
+    public Set<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(Set<Loan> loans) {
+        this.loans = loans;
     }
 }

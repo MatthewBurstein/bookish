@@ -25,8 +25,6 @@ public class BooksController {
 
     @PostMapping
     public String postBook(@ModelAttribute Book book) {
-        System.out.println("book is " +  book);
-        System.out.println("book title is " + book.getTitle());
         bookService.create(book);
         return "redirect:/";
     }
