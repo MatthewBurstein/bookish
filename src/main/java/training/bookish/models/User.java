@@ -1,6 +1,7 @@
 package training.bookish.models;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -9,6 +10,7 @@ public class User {
     private String username;
     private String password;
     private Boolean enabled;
+    private Set<Loan> loans;
 
     @Id
     public int getId() { return id; }
@@ -41,5 +43,16 @@ public class User {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    @JoinColumn(name = "user")
+    public Set<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(Set<Loan> loans) {
+        this.loans = loans;
     }
 }
