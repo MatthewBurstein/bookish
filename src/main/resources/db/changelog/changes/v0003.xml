@@ -13,7 +13,6 @@
             </column>
             <column name="start_date" type="DATE"/>
             <column name="end_date" type="DATE"/>
-            <column name="title" type="VARCHAR(60)"/>
             <column name="book" type="INT">
                 <constraints references="books(id)" foreignKeyName="loan_book_key"/>
             </column>

@@ -1,0 +1,43 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                            http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="Matt" id="CreateSampleLoanData">
+        <insert tableName="loans">
+            <column name="start_date" valueDate="2018-02-03"/>
+            <column name="end_date" valueDate="2018-02-17"/>
+            <column name="book" valueNumeric="1"/>
+            <column name="user" valueNumeric="1"/>
+        </insert>
+        <insert tableName="loans">
+            <column name="start_date" valueDate="2018-01-01"/>
+            <column name="end_date" valueDate="2018-01-05"/>
+            <column name="book" valueNumeric="3"/>
+            <column name="user" valueNumeric="1"/>
+        </insert>
+        <insert tableName="loans">
+            <column name="start_date" valueDate="2018-04-18"/>
+            <column name="end_date" valueDate="2018-05-01"/>
+            <column name="book" valueNumeric="4"/>
+            <column name="user" valueNumeric="1"/>
+        </insert>
+        <insert tableName="loans">
+            <column name="start_date" valueDate="2018-03-03"/>
+            <column name="end_date" valueDate="2018-03-20"/>
+            <column name="book" valueNumeric="1"/>
+            <column name="user" valueNumeric="2"/>
+        </insert>
+        <insert tableName="loans">
+            <column name="start_date" valueDate="2018-03-04"/>
+            <column name="end_date" valueDate="2018-04-02"/>
+            <column name="book" valueNumeric="5"/>
+            <column name="user" valueNumeric="2"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
+
+
