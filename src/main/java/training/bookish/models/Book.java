@@ -1,5 +1,6 @@
 package training.bookish.models;
 
+import javax.annotation.Generated;
 import javax.persistence.*;
 
 @Entity
@@ -12,7 +13,7 @@ public class Book {
     private Integer numberOfCopies;
     private String author;
 
-    public Book() {};
+    public Book() {}
 
     public Book(int id, String isbn, String title, String author, int numberOfCopies) {
         this.id = id;
@@ -23,6 +24,7 @@ public class Book {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }

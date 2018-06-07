@@ -31,4 +31,8 @@ public class BookService {
     public Book find(int bookId) {
         return entityManager.find(Book.class, bookId);
     }
+
+    public void create(Book book) {
+        entityManager.persist(book);
+    }
 }

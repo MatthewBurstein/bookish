@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Bookish - Catalogue</title>
+</head>
+<body>
+<div layout:fragment="content" class="container body-content">
+    <div class="jumbotron">
+        <h1>Add a book to the catalogue</h1>
+    </div>
+    <div>
+        <form action="#" th:action="@{/books}" method="POST" th:object="${book}">
+            <fieldset>
+                <label for="title">Title</label>
+                <input type="text" id="title" th:field="*{title}"/>
+                <label for="author">Author</label>
+                <input type="text" id="Author" th:field="*{author}"/>
+                <label for="isbn">ISBN</label>
+                <input type="text" id="isbn" th:field="*{isbn}"/>
+                <label for="copies">Number of copies</label>
+                <input type="number" id="copies" th:field="*{numberOfCopies}"/>
+                <input type="submit" value="Submit" />
+            </fieldset>
+        </form>
+    </div>
+</div>
+</body>
+</html>
