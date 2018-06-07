@@ -1,8 +1,6 @@
 package training.bookish.models;
 
-import javax.annotation.Generated;
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -81,5 +79,9 @@ public class Book {
 
     public void setLoans(Set<Loan> loans) {
         this.loans = loans;
+    }
+
+    public int amountInStock() {
+        return numberOfCopies - getLoans().size();
     }
 }

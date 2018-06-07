@@ -12,7 +12,17 @@
         <p class="lead">Welcome to the Bookish Catalogue</p>
     </div>
     <div>
-        <p th:text="${book.getTitle()}"</p>
+        <h4 th:text="${book.getTitle()}"></h4>
+        <table>
+            <tr>
+                <td>Number in stock:</td>
+                <td><span th:text="${book.amountInStock()}"></span></td>
+            </tr>
+            <tr>
+                <td>Total held by library:</td>
+                <td><span th:text="${book.getNumberOfCopies()}"></span></td>
+            </tr>
+        </table>
     </div>
 </div>
 </body>

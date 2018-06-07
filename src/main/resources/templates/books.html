@@ -22,7 +22,7 @@
             <tr th:each="book: ${books}">
                 <td><a th:href="@{'/books/'+${book.getId()}}"><span th:text="${book.getTitle()}"></span></a></td>
                 <td><span th:text="${book.getAuthor()}"></span></td>
-                <td><span>XXXX ADD QUANTITY CALCULATION XXXX</span></td>
+                <td><span th:text="${book.amountInStock()}"></span></td>
             </tr>
         </table>
     </div>
