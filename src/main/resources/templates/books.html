@@ -22,6 +22,12 @@
                 <td><a th:href="@{'/books/'+${book.getId()}}"><span th:text="${book.getTitle()}"></span></a></td>
                 <td><span th:text="${book.getAuthor()}"></span></td>
                 <td><span th:text="${book.amountInStock()}"></span></td>
+                <td>
+                    <form action="/loans" method="POST">
+                        <input type="hidden" name="book" th:value="${book.getId()}"/>
+                        <button class="btn btn-sm" th:classappend="${book.amountInStock() > 0} ? btn-primary : disabled">Borrow</button>
+                    </form>
+                </td>
             </tr>
         </table>
     </div>

@@ -7,10 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import training.bookish.models.Book;
 
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import java.util.ArrayList;
+import javax.persistence.criteria.*;
 import java.util.List;
 
 @Service
@@ -30,14 +27,17 @@ public class BookService {
     }
 
     public List<Book> getBooksContaining(String searchTerm) {
-        String likePattern = "%" + searchTerm + "%";
+        String likePattern = "%" + searchTerm.toLowerCase() + "%";
         CriteriaBuilder criteria = entityManager.getCriteriaBuilder();
         CriteriaQuery<Book> query = criteria.createQuery(Book.class);
         Root<Book> book = query.from(Book.class);
+        Expression<String> criteriaTitle = criteria.lower(book.get("title"));
+        Expression<String> criteriaAuthor = criteria.lower(book.get("author"));
+        Predicate authorOrTitleContainsSearchTerm = criteria.or(
+                criteria.like(criteriaTitle, likePattern),
+                criteria.like(criteriaAuthor, likePattern));
         query.select(book)
-                .where(criteria.or(
-                    criteria.like(book.get("title"), likePattern)),
-                        criteria.like(book.get("author"), likePattern))
+                .where(authorOrTitleContainsSearchTerm)
                 .orderBy(criteria.asc(book.get("title")));
         List<Book> books = entityManager.createQuery(query).getResultList();
         return books;
