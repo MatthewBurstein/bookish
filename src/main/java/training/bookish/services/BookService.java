@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,6 +27,20 @@ public class BookService {
         query.select(book)
             .orderBy(criteria.asc(book.get("title")));
         return entityManager.createQuery(query).getResultList();
+    }
+
+    public List<Book> getBooksContaining(String searchTerm) {
+        String likePattern = "%" + searchTerm + "%";
+        CriteriaBuilder criteria = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Book> query = criteria.createQuery(Book.class);
+        Root<Book> book = query.from(Book.class);
+        query.select(book)
+                .where(criteria.or(
+                    criteria.like(book.get("title"), likePattern)),
+                        criteria.like(book.get("author"), likePattern))
+                .orderBy(criteria.asc(book.get("title")));
+        List<Book> books = entityManager.createQuery(query).getResultList();
+        return books;
     }
 
     public Book find(int bookId) {

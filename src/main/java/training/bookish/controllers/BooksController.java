@@ -1,6 +1,8 @@
 package training.bookish.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +11,7 @@ import training.bookish.models.Book;
 import training.bookish.services.BookService;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/books")
@@ -16,10 +19,16 @@ public class BooksController {
 
     @Autowired
     private BookService bookService;
+    private String filter;
 
     @GetMapping
-    ModelAndView getBooks() {
-        List<Book> books = bookService.getBooks();
+    public ModelAndView getBooks(@RequestParam Map<String, String> params){
+        List<Book> books = null;
+        if (params.containsKey("filter")) {
+            books = bookService.getBooksContaining(params.get("filter"));
+        } else {
+            books = bookService.getBooks();
+        }
         return new ModelAndView("books","books", books);
     }
 
