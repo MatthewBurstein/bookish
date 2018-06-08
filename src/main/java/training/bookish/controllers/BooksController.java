@@ -32,6 +32,11 @@ public class BooksController {
     @GetMapping("/{bookId}")
     ModelAndView getBook(@PathVariable int bookId) {
         Book book = bookService.find(bookId);
+        System.out.println(book.getLoans());
+        book.getLoans().forEach(loan -> {
+            System.out.println(loan.getEndDate());
+            System.out.println(loan.getUser().getUsername());
+        });
         return new ModelAndView("book", "book", book);
     }
 
