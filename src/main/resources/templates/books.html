@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Bookish - Catalogue</title>
+</head>
+<body>
+<div layout:fragment="content" class="container body-content">
+    <div class="jumbotron">
+        <h1>Bookish</h1>
+        <p class="lead">Welcome to the Bookish Catalogue</p>
+    </div>
+    <div>
+        <table class="table">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>quantity</th>
+            </tr>
+            <tr th:each="book: ${books}">
+                <td><a th:href="@{'/books/'+${book.getId()}}"><span th:text="${book.getTitle()}"></span></a></td>
+                <td><span th:text="${book.getAuthor()}"></span></td>
+                <td><span th:text="${book.amountInStock()}"></span></td>
+                <td>
+                    <form action="/loans" method="POST">
+                        <input type="hidden" name="book" th:value="${book.getId()}"/>
+                        <button class="btn btn-sm" th:classappend="${book.amountInStock() > 0} ? btn-primary : disabled">Borrow</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

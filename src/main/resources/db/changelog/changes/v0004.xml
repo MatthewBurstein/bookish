@@ -1,0 +1,55 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                            http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="Matt" id="CreateSampleUserAndBookData">
+        <!--USER DATA-->
+        <insert tableName="users">
+            <column name="username" value="a"/>
+            <column name="password" value="a"/>
+            <column name="enabled" valueBoolean="true"/>
+        </insert>
+        <insert tableName="users">
+            <column name="username" value="b"/>
+            <column name="password" value="b"/>
+            <column name="enabled" valueBoolean="true"/>
+        </insert>
+        <!--BOOK DATA-->
+        <insert tableName="books">
+            <column name="isbn" value="1"/>
+            <column name="title" value="The Northern Lights"/>
+            <column name="author" value="Phillip Pullman"/>
+            <column name="number_of_copies" valueNumeric="3"/>
+        </insert>
+        <insert tableName="books">
+            <column name="isbn" value="2"/>
+            <column name="title" value="The Picture of Dorian Grey"/>
+            <column name="author" value="Oscar Wilde"/>
+            <column name="number_of_copies" valueNumeric="5"/>
+        </insert>
+        <insert tableName="books">
+            <column name="isbn" value="3"/>
+            <column name="title" value="The Fall of the House of Usher"/>
+            <column name="author" value="Edgar Allan Poe"/>
+            <column name="number_of_copies" valueNumeric="2"/>
+        </insert>
+        <insert tableName="books">
+            <column name="isbn" value="4"/>
+            <column name="title" value="The Call of Cthulhu"/>
+            <column name="author" value="HP Lovecraft"/>
+            <column name="number_of_copies" valueNumeric="1"/>
+        </insert>
+        <insert tableName="books">
+            <column name="isbn" value="5"/>
+            <column name="title" value="The Watchmen"/>
+            <column name="author" value="Alan Moore"/>
+            <column name="number_of_copies" valueNumeric="5"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
+
+

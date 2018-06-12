@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Bookish - Catalogue</title>
+</head>
+<body>
+<div layout:fragment="content" class="container body-content">
+    <div class="jumbotron">
+        <h1>Bookish</h1>
+        <p class="lead">Welcome to the Bookish Catalogue</p>
+    </div>
+    <div>
+        <h4 th:text="${book.getTitle()}"></h4>
+        <div th:switch="${book.amountInStock()}">
+            <span th:case="0">
+                <table class="table">
+                    <tr>
+                        <th>On loan to:</th>
+                        <th>Return date</th>
+                    </tr>
+                    <tr th:each="loan: ${book.getLoans()}">
+
+                        <td><span th:text="${loan.getUser().getUsername()}"></span></td>
+                        <td><span th:text="${loan.getEndDate()}"></span></td>
+                    </tr>
+                </table>
+            </span>
+            <span th:case="*">
+                <table class="table">
+                    <tr>
+                        <td>Number in stock:</td>
+                        <td><span th:text="${book.amountInStock()}"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Total held by library:</td>
+                        <td><span th:text="${book.getNumberOfCopies()}"></span></td>
+                    </tr>
+                </table>
+            </span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
